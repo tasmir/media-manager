@@ -1,0 +1,28 @@
+{
+    "name": "tasmir/media-manager",
+    "description": "A premium media manager for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tasmir Ahmed",
+            "email": "tasmir.cse@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "intervention/image": "^3.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tasmir\\MediaManager\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tasmir\\MediaManager\\MediaManagerServiceProvider"
+            ]
+        }
+    }
+}
