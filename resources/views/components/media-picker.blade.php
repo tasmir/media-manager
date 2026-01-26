@@ -26,7 +26,7 @@
                         $ids = explode(',', $value);
                     }
                     $ids = array_filter(array_map('trim', (array)$ids));
-                    $medias = \Tasmir\MediaManager\Models\MediaFile::whereIn('id', $ids)->get();
+                    $medias = \Tasmir\MediaManager\Models\MediaFile::whereIn('id', $ids)->orderByRaw('FIELD(id, ' . implode(',', $ids) . ')')->get();
                 @endphp
                 @foreach($medias as $media)
                     <div class="relative group w-20 h-20">
