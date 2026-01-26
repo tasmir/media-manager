@@ -49,8 +49,9 @@ trait MediaHelper
 
             $extension = $file->getClientOriginalExtension();
             $isImage = $this->isImage($extension);
+            $enableWebp = config('media-manager.enable_webp_convert', true);
             
-            if ($isImage) {
+            if ($isImage && $enableWebp) {
                 $file_name = time() . '-' . uniqid() . '.webp';
                 $extension = 'webp';
             } else {
@@ -74,7 +75,7 @@ trait MediaHelper
                         $img->place($logo, 'top-right', 10, 10);
                     }
                 }
-                $img->encode(new WebpEncoder($quality ?: 80))->save($destinationPath . '/' . $file_name);
+                $img->encode(new WebpEncoder($quality ?: config('media-manager.image_quality', 80)))->save($destinationPath . '/' . $file_name);
             } else {
                 $file->move($destinationPath, $file_name);
             }
@@ -116,7 +117,7 @@ trait MediaHelper
 
     public function minimumUpSize()
     {
-        return 5120 * 1024; // 5MB default
+        return config('media-manager.max_file_size', 5) * 1024 * 1024;
     }
 
     public function getFileSize($filePath)

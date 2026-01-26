@@ -124,6 +124,12 @@ class MediaFileController extends Controller
         
         $info = getimagesize($fullPath);
         if ($info) {
+            if (config('media-manager.media_cache.enable', true)) {
+                $expiry = config('media-manager.media_cache.expiry', 86400 * 30);
+                header("Cache-Control: public, max-age=" . $expiry);
+                header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + $expiry));
+            }
+
             header("Content-type: " . $info['mime']);
             readfile($fullPath);
         }

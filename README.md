@@ -7,9 +7,12 @@ A powerful, standalone, and customizable Media Manager for Laravel applications.
 - 🚀 **Asynchronous Uploads**: Drag-and-drop or select files for instant upload with progress bars.
 - 🖼️ **Media Picker Component**: Easy-to-use Blade component for single or multiple file selection.
 - 🎨 **Standalone CSS/JS**: Works even without Tailwind CSS; assets are minified and easy to publish.
-- ⚙️ **Highly Configurable**: Customize upload paths, design options, and asset locations.
+- ⚙️ **Highly Configurable**: Customize upload paths, image optimization, and caching.
 - 📝 **CKEditor Integration**: Built-in support for image uploads from rich text editors.
 - 🗑️ **Soft Deletes**: Built-in trash management for media files.
+- 🔗 **Unique Slugs**: Automatic collision detection and unique slug generation.
+- ☁️ **WebP Conversion**: Optional automatic conversion of images to WebP for optimization.
+- ⚡ **Media Caching**: Built-in support for browser-side media caching.
 
 ---
 
@@ -42,6 +45,10 @@ The config file (`config/media-manager.php`) allows you to customize:
 - `assets`: Paths to CSS/JS files.
 - `upload_path`: Where files are stored (default: `media`).
 - `active_tailwindcss`: Set to `false` to load the standalone CSS file.
+- `enable_webp_convert`: Toggle WebP conversion (default: `true`).
+- `image_quality`: Default quality for image encoding (default: `80`).
+- `media_cache`: Array containing `enable` (bool) and `expiry` (int).
+- `max_file_size`: Maximum upload size in MB (default: `5`).
 - `button_class` & `button_text`: Default styling for the picker button.
 
 ---
@@ -114,4 +121,4 @@ The package includes a route for CKEditor image uploads. Set your CKEditor `uplo
 ---
 
 ## License
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
