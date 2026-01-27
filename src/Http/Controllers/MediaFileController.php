@@ -8,6 +8,7 @@ use Tasmir\MediaManager\Models\MediaFile;
 use Tasmir\MediaManager\Services\MediaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Gate;
 
 class MediaFileController extends Controller
 {
@@ -49,7 +50,7 @@ class MediaFileController extends Controller
                 'quality' => 100,
             ];
             if ($request->filled('prefix')) $data['prefix'] = $request->get('prefix');
-            
+
             $media_id = $this->uploadMediaFile($data);
             $media = MediaFile::find($media_id);
 
@@ -67,13 +68,14 @@ class MediaFileController extends Controller
             return redirect()->route('admin.files.index')->with('success', 'Media File uploaded successfully');
         }
 
-        return $request->ajax() 
+        return $request->ajax()
             ? response()->json(['success' => false, 'message' => 'No file uploaded'], 400)
             : back()->with('error', 'No file uploaded');
     }
 
     public function edit(MediaFile $file)
     {
+        abort_unless(Gate::allows('files_edit'), 403);
         return view('media-manager::edit', [
             'page_date' => $this->service->formData($file, 'Edit Media File')
         ]);
@@ -81,6 +83,7 @@ class MediaFileController extends Controller
 
     public function update(Request $request, MediaFile $file)
     {
+        abort_unless(Gate::allows('files_edit'), 403);
         return $this->service->save($file, $request, 'Media updated successfully');
     }
 
@@ -121,7 +124,7 @@ class MediaFileController extends Controller
         if (!File::exists($fullPath)) {
             $fullPath = public_path('uploads/files/notfound.png');
         }
-        
+
         $info = getimagesize($fullPath);
         if ($info) {
             if (config('media-manager.media_cache.enable', true)) {
@@ -133,5 +136,20 @@ class MediaFileController extends Controller
             header("Content-type: " . $info['mime']);
             readfile($fullPath);
         }
+    }
+    public function restore(Request $request, $id)
+    {
+        abort_unless(Gate::allows('files_restor'), 403);
+        MediaFile::onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->back()->with('success', 'Record restored successfully.');
+    }
+
+    public function forceDelete(Request $request,$id)
+    {
+        abort_unless(Gate::allows('files_delete_permanently'), 403);
+        $media = MediaFile::withTrashed()->findOrFail($id);
+        $this->deleteMediaFileByPath($media?->path);
+        $media->forceDelete();
+        return redirect()->back()->with('success', 'Blog permanently deleted.');
     }
 }

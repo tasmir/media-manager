@@ -39,6 +39,8 @@ class MediaService
                 'edit' => 'admin.files.edit',
                 'view' => 'admin.files.show',
                 'delete' => 'admin.files.destroy',
+                'force' => 'admin.files.force-delete',
+                'restore' => 'admin.files.restore',
             ],
         ];
     }
