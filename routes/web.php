@@ -10,9 +10,7 @@ Route::prefix('files')->name('file.')->group(function () {
 Route::middleware(['auth', 'web'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('files-picker', [MediaFileController::class, 'picker'])->name('files.picker');
     Route::post('ck-image-upload', [MediaFileController::class, 'ckImageUpload'])->name('ck.image.upload');
-
     Route::post('/files/{id}/restore', [MediaFileController::class, 'restore'])->name('files.restore');
     Route::DELETE('/files/{id}/force-delete', [MediaFileController::class, 'forceDelete'])->name('files.force-delete');
-
     Route::resource('files', MediaFileController::class);
 });

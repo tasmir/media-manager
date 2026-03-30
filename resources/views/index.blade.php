@@ -26,14 +26,14 @@
                 @endif
             </a>
 
-            {{--<button type="button"
+            <button type="button"
                onclick="document.getElementById('file-input').click()"
                class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-xl text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-md shadow-indigo-200">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
                 Upload Media
-            </button>--}}
+            </button>
         </div>
     </div>
 
@@ -80,13 +80,8 @@
     <div id="media-grid-container">
         @if($page_date['model_data']->count() > 0)
             <div id="media-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-9 gap-4">
-                @if(request()->exists('trashed'))
-                    @php($mediaItem = "media-manager::partials.media-item-trashed")
-                @else
-                    @php($mediaItem = "media-manager::partials.media-item")
-                @endif
                 @foreach($page_date['model_data'] as $media)
-                    @include($mediaItem, ['media' => $media])
+                    @include('media-manager::partials.media-item', ['media' => $media])
                 @endforeach
             </div>
 
@@ -107,7 +102,7 @@
         @endif
     </div>
 </div>
-@inject('traitService', 'App\Services\TraitWrapper')
+@inject('traitService', 'Tasmir\MediaManager\Services\TraitWrapper')
 
 
 @push('script')
