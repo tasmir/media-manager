@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class MediaFile extends Model
 {
     use SoftDeletes;
-    
+
     protected $table = 'media_files';
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
