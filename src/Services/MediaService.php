@@ -10,7 +10,7 @@ class MediaService
 {
     public function getAll()
     {
-        return MediaFile::latest()->paginate(30);
+        return MediaFile::latest()->paginate(config('media-manager.paginate'));
     }
 
     public function picker(Request $request)
@@ -31,7 +31,7 @@ class MediaService
     public function index($isTrash = false)
     {
         return [
-            'model_data' => $isTrash ? MediaFile::onlyTrashed()->latest()->paginate(27) : $this->getAll(),
+            'model_data' => $isTrash ? MediaFile::onlyTrashed()->latest()->paginate(config('media-manager.paginate')) : $this->getAll(),
             'empty_message' => 'No media found.',
             'page_title' => $isTrash ? 'Trashed Media' : 'Media',
             'rootURL' => !$isTrash ? route('admin.files.index', ['trashed']) : route('admin.files.index'),
@@ -39,8 +39,6 @@ class MediaService
                 'edit' => 'admin.files.edit',
                 'view' => 'admin.files.show',
                 'delete' => 'admin.files.destroy',
-                'force' => 'admin.files.force-delete',
-                'restore' => 'admin.files.restore',
             ],
         ];
     }
