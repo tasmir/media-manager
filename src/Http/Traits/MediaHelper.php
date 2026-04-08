@@ -30,7 +30,7 @@ trait MediaHelper
         if (isset($data['prefix'])) $prefix = $data['prefix'];
         if (isset($data['media_id'])) $media_id = $data['media_id'];
         if (isset($data['quality'])) $quality = $data['quality'];
-        
+
         if (isset($data['alt_text']) && !empty($data['alt_text'])) $alt_text = $data['alt_text'];
         if (isset($data['caption']) && !empty($data['caption'])) $caption = $data['caption'];
         if (isset($data['isYearMonth'])) $isYearMonth = $data['isYearMonth'];
@@ -50,7 +50,7 @@ trait MediaHelper
             $extension = $file->getClientOriginalExtension();
             $isImage = $this->isImage($extension);
             $enableWebp = config('media-manager.enable_webp_convert', true);
-            
+
             if ($isImage && $enableWebp) {
                 $file_name = time() . '-' . uniqid() . '.webp';
                 $extension = 'webp';
@@ -59,14 +59,15 @@ trait MediaHelper
             }
 
             $destinationPath = public_path($path);
-            $img = ImageManager::imagick()->read($file->getRealPath());
+
 
             $nameWithoutExtension = Str::beforeLast($file->getClientOriginalName(), '.');
             $slug = $prefix ? "$prefix/" : "";
             if ($isYearMonth) $slug .= "$yearMonth/";
             $slug .= Str::slug($nameWithoutExtension);
 
-            if ($isImage) {
+            if ($isImage && $enableWebp) {
+                $img = ImageManager::imagick()->read($file->getRealPath());
                 if ($resize) $img->resize($width, $height);
                 if ($addLogo) {
                     $logoPath = public_path('img/icon-50.webp');
