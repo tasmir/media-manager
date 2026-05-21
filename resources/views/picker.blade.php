@@ -59,7 +59,7 @@
                 <button type="button" onclick="document.getElementById('picker-file-input').click()" class="px-6 py-2.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 shadow-md shadow-indigo-200 transition-all">
                     Select Files
                 </button>
-                <input type="file" id="picker-file-input" class="hidden" multiple accept="image/*">
+                <input type="file" id="picker-file-input" class="hidden" multiple accept="{{ config('media-manager.accept', 'image/*') }}">
 
                 <!-- Progress -->
                 <div id="picker-upload-progress" class="hidden w-full max-w-md mt-10">

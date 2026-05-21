@@ -63,7 +63,7 @@
             </div>
             <h3 class="mt-4 text-sm font-semibold text-slate-900">Drag and drop files here</h3>
             <p class="mt-1 text-xs text-slate-500">or click to browse from your computer</p>
-            <input type="file" id="file-input" class="hidden" multiple accept="image/*">
+            <input type="file" id="file-input" class="hidden" multiple accept="{{ config('media-manager.accept', 'image/*') }}">
         </div>
 
         <!-- Upload Progress Overlay (Hidden by default) -->
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let activeUploads = 0;
 
     function handleFiles(files) {
-        const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'];
+        const allowedTypes = {!! json_encode(config('media-manager.allowed_types', ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml'])) !!};
         // const maxSize = 10 * 1024 * 1024; // 10MB
         const maxSize = {{$traitService->minimumUpSize()}} // 10MB
         const validFiles = [];

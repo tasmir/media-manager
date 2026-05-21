@@ -17,6 +17,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Allowed Media File Types
+    |--------------------------------------------------------------------------
+    |
+    | Define the allowed file types for uploads.
+    | - accept: The HTML accept attribute value for the file input.
+    | - allowed_types: JS array of allowed mime types for client-side check.
+    | - allowed_extensions: Comma-separated list of allowed extensions for Laravel validation.
+    |
+    */
+    'accept' => 'image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'allowed_types' => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+    'allowed_extensions' => 'jpeg,png,jpg,gif,webp,svg,pdf,doc,docx,xls,xlsx',
+    /*
+    |--------------------------------------------------------------------------
     | Default Upload Path
     |--------------------------------------------------------------------------
     |

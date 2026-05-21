@@ -39,7 +39,7 @@ class MediaFileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,webp,svg|max:' . ($this->minimumUpSize() / 1024),
+            'file' => 'required|mimes:' . config('media-manager.allowed_extensions', 'jpeg,png,jpg,gif,webp,svg') . '|max:' . ($this->minimumUpSize() / 1024),
         ]);
 
         if ($request->hasFile('file')) {
