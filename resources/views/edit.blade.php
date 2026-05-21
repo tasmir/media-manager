@@ -148,7 +148,7 @@
                         <h4 class="text-lg font-bold">Integration URL</h4>
                         <p class="text-indigo-100/60 text-sm mt-1">Use this URL to embed this media in your content or API.</p>
                         <div class="mt-4 flex items-center gap-2">
-                            <code id="mediaUrl" class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-indigo-300 font-mono text-xs truncate">
+                            <code id="mediaUrl" class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-indigo-300 font-mono text-xs truncate" style="max-width: 435px">
                                 {{ route('file.show', [$page_date['model_data']->slug]) }}
                             </code>
                             <button onclick="copyToClipboard('{{ route('file.show', [$page_date['model_data']->slug]) }}', this)"
@@ -183,7 +183,7 @@
                         <h4 class="text-lg font-bold">Accual URL</h4>
                         <p class="text-indigo-100/60 text-sm mt-1">Use this URL to open this media in your browser derictly.</p>
                         <div class="mt-4 flex items-center gap-2">
-                            <code id="mediaUrl" class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-indigo-300 font-mono text-xs truncate" style="max-width: 67%;">
+                            <code id="mediaActualUrl" class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-indigo-300 font-mono text-xs truncate" style="max-width: 435px">
                                 {{ url(asset($page_date['model_data']->path)) }}
                             </code>
                             <button onclick="copyToClipboard('{{ url(asset($page_date['model_data']->path)) }}', this)"
