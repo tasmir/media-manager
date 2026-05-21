@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const rejectedFiles = [];
 
         ([...files]).forEach(file => {
-            if (!allowedTypes.includes(file.type)) {
+            if (!allowedTypes.includes(file.type) && !file.name.toLowerCase().endsWith('.vcf')) {
                 rejectedFiles.push(`${file.name} (Invalid type)`);
             } else if (file.size > maxSize) {
                 rejectedFiles.push(`${file.name} (Too large, max {{$traitService->bytesToHuman($traitService->minimumUpSize())}})`);

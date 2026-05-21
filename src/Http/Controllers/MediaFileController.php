@@ -38,8 +38,12 @@ class MediaFileController extends Controller
 
     public function store(Request $request)
     {
+        $allowedMimes = config('media-manager.allowed_types', []);
+        $allowedExtension = config('media-manager.allowed_extensions', '');
+
         $request->validate([
-            'file' => 'required|mimes:' . config('media-manager.allowed_extensions', 'jpeg,png,jpg,gif,webp,svg') . '|max:' . ($this->minimumUpSize() / 1024),
+        //     // 'file' => 'required|mimes:' . config('media-manager.allowed_extensions') . '|max:' . ($this->minimumUpSize() / 1024),
+            'file' => 'required|extensions:' . $allowedExtension . '|max:' . ($this->minimumUpSize() / 1024),
         ]);
 
         if ($request->hasFile('file')) {
@@ -109,10 +113,10 @@ class MediaFileController extends Controller
         return response()->json(['uploaded' => 0, 'error' => ['message' => 'No file uploaded']]);
     }
 
-    public function show_file($slug): void
+    public function show_file($slug)
     {
         $media = MediaFile::where('slug', $slug)->firstOrFail();
-        $this->image_url($media->path);
+        return $this->image_url($media->path);
     }
 
     private function image_url($path)
@@ -132,6 +136,8 @@ class MediaFileController extends Controller
 
             header("Content-type: " . $info['mime']);
             readfile($fullPath);
+        } else {
+            return redirect(asset($path));
         }
     }
 

@@ -26,9 +26,10 @@ return [
     | - allowed_extensions: Comma-separated list of allowed extensions for Laravel validation.
     |
     */
-    'accept' => 'image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/vcard',
-    'allowed_types' => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/vcard'],
+    'accept' => 'image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/vcard,text/x-vcard,.vcf',
+    'allowed_types' => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/vcard', 'text/x-vcard'],
     'allowed_extensions' => 'jpeg,png,jpg,gif,webp,svg,pdf,doc,docx,xls,xlsx,vcf',
+
     /*
     |--------------------------------------------------------------------------
     | Default Upload Path
@@ -52,7 +53,7 @@ return [
     | Options for image optimization and conversion.
     |
     */
-    'enable_webp_convert' => true,
+    'enable_webp_convert' => false,
     'image_quality' => 80,
 
     /*
