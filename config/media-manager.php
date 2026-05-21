@@ -26,9 +26,9 @@ return [
     | - allowed_extensions: Comma-separated list of allowed extensions for Laravel validation.
     |
     */
-    'accept' => 'image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'allowed_types' => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
-    'allowed_extensions' => 'jpeg,png,jpg,gif,webp,svg,pdf,doc,docx,xls,xlsx',
+    'accept' => 'image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/vcard',
+    'allowed_types' => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'text/vcard'],
+    'allowed_extensions' => 'jpeg,png,jpg,gif,webp,svg,pdf,doc,docx,xls,xlsx,vcf',
     /*
     |--------------------------------------------------------------------------
     | Default Upload Path

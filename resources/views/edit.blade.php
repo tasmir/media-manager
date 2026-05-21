@@ -167,6 +167,42 @@
                             </button>
                         </div>
                     </div>
+
+                </div>
+            </div>
+
+            <div class="mt-6 bg-slate-900 rounded-3xl p-6 text-white shadow-xl overflow-hidden relative group">
+                <div class="absolute -right-12 -top-12 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl group-hover:bg-indigo-500/30 transition-colors duration-500"></div>
+                <div class="relative flex items-start gap-4">
+                    <div class="p-3 bg-white/10 rounded-2xl backdrop-blur-md">
+                        <svg class="w-6 h-6 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold">Accual URL</h4>
+                        <p class="text-indigo-100/60 text-sm mt-1">Use this URL to open this media in your browser derictly.</p>
+                        <div class="mt-4 flex items-center gap-2">
+                            <code id="mediaUrl" class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-indigo-300 font-mono text-xs truncate" style="max-width: 67%;">
+                                {{ url(asset($page_date['model_data']->path)) }}
+                            </code>
+                            <button onclick="copyToClipboard('{{ url(asset($page_date['model_data']->path)) }}', this)"
+                                    class="p-3 bg-indigo-500 hover:bg-indigo-400 rounded-xl transition-all shadow-lg active:scale-95 group/copy relative"
+                                    title="Copy URL">
+                                <span class="copy-icon">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                    </svg>
+                                </span>
+                                <span class="check-icon hidden">
+                                    <svg class="w-5 h-5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
